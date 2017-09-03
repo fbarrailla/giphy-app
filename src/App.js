@@ -1,7 +1,7 @@
 import React from 'react';
 import { func } from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import Header from './components/common/Header';
 import GifsScreen from './components/gifs/GifsScreenContainer';
 import FavoritesScreen from './components/favorites/FavoritesScreenContainer';
@@ -19,7 +19,8 @@ const App = ({ searchGifs }) => (
     <Wrapper>
       <Header searchGifs={searchGifs} />
       <Screens>
-        <Route exact path="/" component={GifsScreen} />
+        <Route exact path="/" render={() => <Redirect to="/search" />} />
+        <Route exact path="/search" component={GifsScreen} />
         <Route path="/favorites" component={FavoritesScreen} />
       </Screens>
     </Wrapper>

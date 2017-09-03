@@ -28,7 +28,7 @@ const MenuItem = styled(NavLink)`
 
 const Menu = () => (
   <Wrapper>
-    <MenuItem exact to="/" activeClassName="active">
+    <MenuItem to="/search" activeClassName="active">
       search
     </MenuItem>
     <MenuItem to="/favorites" activeClassName="active">
