@@ -25,3 +25,15 @@ export const storage = key => ({
     }
   },
 });
+
+/**
+ * Flatten array from [{ id: 1, data }] to { 1: { id: 1, data } }
+ * @param {string} key 
+ */
+export const normalize = key => array =>
+  array.reduce((acc, el) => {
+    acc[el.id] = el;
+    return acc;
+  }, {});
+
+export const normalizeById = normalize('id');
