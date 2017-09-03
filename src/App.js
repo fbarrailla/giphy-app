@@ -7,7 +7,10 @@ import GifsScreen from './components/gifs/GifsScreenContainer';
 import FavoritesScreen from './components/favorites/FavoritesScreenContainer';
 import theme from './theme';
 
-const Wrapper = styled.div`padding-top: 88px;`;
+const Wrapper = styled.div`
+  padding-top: 88px;
+  margin-bottom: 20px;
+`;
 
 const Screens = styled.div`
   width: 80%;
