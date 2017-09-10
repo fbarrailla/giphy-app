@@ -1,5 +1,5 @@
 import React from 'react';
-import { func } from 'prop-types';
+import { func, string, object } from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import SearchInput from './SearchInput';
@@ -16,6 +16,7 @@ const Wrapper = styled.div`
   padding: 20px;
   background-color: white;
   z-index: 10;
+  height: ${props => props.theme.headerHeight};
 `;
 
 const HomeLink = styled(NavLink)`
@@ -38,18 +39,33 @@ const Logo = styled.h1`
   color: white;
 `;
 
-const Header = ({ searchGifs }) => (
+const Header = ({
+  searchGifs,
+  searchString,
+  clearSearch,
+  lastSearch,
+  router,
+}) => (
   <Wrapper>
     <HomeLink to="/">
       <Logo>G</Logo>
     </HomeLink>
-    <SearchInput searchGifs={searchGifs} />
-    <Menu />
+    <SearchInput
+      searchGifs={searchGifs}
+      searchString={searchString}
+      clearSearch={clearSearch}
+      router={router}
+    />
+    <Menu lastSearch={lastSearch} />
   </Wrapper>
 );
 
 Header.propTypes = {
   searchGifs: func.isRequired,
+  searchString: string.isRequired,
+  clearSearch: func.isRequired,
+  lastSearch: string.isRequired,
+  router: object.isRequired,
 };
 
 export default Header;

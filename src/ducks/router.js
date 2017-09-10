@@ -7,6 +7,8 @@ import { push } from 'react-router-redux';
 
 export const navigateToSearch = searchStr => push(`/search?q=${searchStr}`);
 
+export const navigateToEmptySearch = searchStr => push(`/search`);
+
 /**
  * Selectors
  */

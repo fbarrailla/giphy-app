@@ -52,8 +52,8 @@ export default favoritesReducer;
  * Selectors
  */
 
-const selectAllIds = state => state.favorites.allIds;
-const selectById = state => state.favorites.byId;
+export const selectAllIds = state => state.favorites.allIds;
+export const selectById = state => state.favorites.byId;
 
 export const getFavorites = createSelector(
   [selectAllIds, selectById],

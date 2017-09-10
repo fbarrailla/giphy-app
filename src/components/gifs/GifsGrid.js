@@ -1,26 +1,24 @@
 import React, { PureComponent } from 'react';
 import { array, func } from 'prop-types';
 import styled from 'styled-components';
-import Gif from './Gif';
+import GifWithActions from './GifWithActions';
 
 const gutterWidth = 10;
 const columns = 4;
 const gutters = columns - 1;
 
-const borderColor = '#e5e5e5';
-
 const Wrapper = styled.div`
-  background-color: ${borderColor};
+  background-color: ${props => props.theme.lightGrey};
   padding: 10px;
   &::before {
     content: '';
     display: ${props => (props.sticked ? 'block' : 'none')};
     position: fixed;
-    top: 74px;
+    top: ${props => props.theme.headerHeight};
     left: 10%;
     right: 10%;
     height: 10px;
-    background: ${borderColor};
+    background: ${props => props.theme.lightGrey};
     z-index: 10;
   }
 `;
@@ -35,6 +33,7 @@ class GifsGrid extends PureComponent {
     gifs: array.isRequired,
     toggleFavorite: func.isRequired,
     favoritesIds: array.isRequired,
+    selectGif: func.isRequired,
   };
 
   state = {
@@ -70,18 +69,20 @@ class GifsGrid extends PureComponent {
 
   render() {
     const { colWidth, sticked } = this.state;
-    const { gifs, toggleFavorite, favoritesIds } = this.props;
+    const { gifs, toggleFavorite, favoritesIds, selectGif } = this.props;
     return (
       <Wrapper sticked={sticked}>
         <Grid innerRef={el => (this.gridEl = el)}>
           {gifs.map(gif => (
-            <Gif
+            <GifWithActions
               key={gif.id}
               gif={gif}
               toggleFavorite={toggleFavorite}
-              colWidth={colWidth}
+              width={colWidth}
               gutterWidth={gutterWidth}
               favoritesIds={favoritesIds}
+              selectGif={selectGif}
+              isFavorite={favoritesIds.indexOf(gif.id) !== -1}
             />
           ))}
         </Grid>

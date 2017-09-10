@@ -1,10 +1,12 @@
 import React from 'react';
-import { func } from 'prop-types';
+import { func, string, object } from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
 import { Route, Redirect } from 'react-router-dom';
 import Header from './components/common/Header';
-import GifsScreen from './components/gifs/GifsScreenContainer';
+import SearchGifsScreen from './components/search/SearchGifsScreenContainer';
+import TrendingGifsScreen from './components/trending/TrendingGifsScreenContainer';
 import FavoritesScreen from './components/favorites/FavoritesScreenContainer';
+import SelectedGifModal from './components/gifs/SelectedGifModalContainer';
 import theme from './theme';
 
 const Wrapper = styled.div`
@@ -17,21 +19,33 @@ const Screens = styled.div`
   margin: 0 auto;
 `;
 
-const App = ({ searchGifs }) => (
+const App = ({ searchGifs, searchString, clearSearch, lastSearch, router }) => (
   <ThemeProvider theme={theme}>
     <Wrapper>
-      <Header searchGifs={searchGifs} />
+      <Header
+        searchGifs={searchGifs}
+        searchString={searchString}
+        clearSearch={clearSearch}
+        lastSearch={lastSearch}
+        router={router}
+      />
       <Screens>
-        <Route exact path="/" render={() => <Redirect to="/search" />} />
-        <Route exact path="/search" component={GifsScreen} />
+        <Route exact path="/" render={() => <Redirect to="/trending" />} />
+        <Route path="/trending" component={TrendingGifsScreen} />
+        <Route path="/search" component={SearchGifsScreen} />
         <Route path="/favorites" component={FavoritesScreen} />
       </Screens>
+      <SelectedGifModal />
     </Wrapper>
   </ThemeProvider>
 );
 
 App.propTypes = {
   searchGifs: func.isRequired,
+  searchString: string.isRequired,
+  lastSearch: string.isRequired,
+  clearSearch: func.isRequired,
+  router: object.isRequired,
 };
 
 export default App;

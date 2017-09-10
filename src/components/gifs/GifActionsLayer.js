@@ -55,45 +55,46 @@ const GifActionsLayer = ({
   original,
   isFavorite,
   toggleFavorite,
+  selectGif,
+  isLoaded,
 }) => {
   const FavoriteIcon = isFavorite ? FullHeartIcon : EmptyHeartIcon;
+  if (!isLoaded) {
+    return null;
+  }
   return (
-    loaded && (
-      <ActionsWrapper className="Gif__actions">
-        {loaded && (
-          <Actions>
-            <Action>
-              <CopyButton url={original.url}>
-                <CopyIcon />
-              </CopyButton>
-            </Action>
-            <Action>
-              <FavoriteButton
-                full={isFavorite}
-                title="Add to favorites"
-                onClick={() => toggleFavorite(gif)}
-              >
-                <FavoriteIcon />
-              </FavoriteButton>
-            </Action>
-            <Action>
-              <FullScreenButton title="Enlarge">
-                <FullScreenIcon />
-              </FullScreenButton>
-            </Action>
-          </Actions>
-        )}
-      </ActionsWrapper>
-    )
+    <ActionsWrapper className="Gif__actions">
+      <Actions>
+        <Action>
+          <CopyButton url={original.url}>
+            <CopyIcon />
+          </CopyButton>
+        </Action>
+        <Action>
+          <FavoriteButton
+            full={isFavorite}
+            title="Add to favorites"
+            onClick={() => toggleFavorite(gif)}
+          >
+            <FavoriteIcon />
+          </FavoriteButton>
+        </Action>
+        <Action>
+          <FullScreenButton title="Enlarge" onClick={() => selectGif(gif.id)}>
+            <FullScreenIcon />
+          </FullScreenButton>
+        </Action>
+      </Actions>
+    </ActionsWrapper>
   );
 };
 
 GifActionsLayer.propTypes = {
   isFavorite: bool.isRequired,
-  loaded: bool.isRequired,
   gif: object.isRequired,
   original: object.isRequired,
   toggleFavorite: func.isRequired,
+  selectGif: func.isRequired,
 };
 
 export default GifActionsLayer;

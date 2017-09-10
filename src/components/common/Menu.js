@@ -1,4 +1,5 @@
 import React from 'react';
+import { string } from 'prop-types';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
@@ -26,9 +27,18 @@ const MenuItem = styled(NavLink)`
   }
 `;
 
-const Menu = () => (
+const Menu = ({ lastSearch }) => (
   <Wrapper>
-    <MenuItem to="/search" activeClassName="active">
+    <MenuItem to="/trending" activeClassName="active">
+      trending
+    </MenuItem>
+    <MenuItem
+      to={{
+        pathname: '/search',
+        search: lastSearch ? `q=${lastSearch}` : '',
+      }}
+      activeClassName="active"
+    >
       search
     </MenuItem>
     <MenuItem to="/favorites" activeClassName="active">
@@ -36,5 +46,9 @@ const Menu = () => (
     </MenuItem>
   </Wrapper>
 );
+
+Menu.propTypes = {
+  lastSearch: string.isRequired,
+};
 
 export default Menu;

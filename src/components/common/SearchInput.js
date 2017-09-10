@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { func } from 'prop-types';
+import { func, string, object } from 'prop-types';
 import styled from 'styled-components';
 import SearchIcon from 'react-icons/lib/go/search';
 import ClearSearchIcon from 'react-icons/lib/ti/backspace';
@@ -40,11 +40,40 @@ const BigSearchIcon = styled(SearchIcon)`
 export default class SearchInput extends PureComponent {
   static propTypes = {
     searchGifs: func.isRequired,
+    searchString: string.isRequired,
+    clearSearch: func.isRequired,
+    router: object.isRequired,
   };
 
   state = {
     searchString: '',
   };
+
+  componentDidMount() {
+    if (this.props.router.location.pathname === '/search') {
+      this.input.focus();
+    }
+  }
+
+  componentWillReceiveProps({ searchString, router }) {
+    if (searchString !== this.state.searchString) {
+      this.setState({ searchString });
+    }
+    if (
+      this.props.router.location.pathname !== router.location.pathname &&
+      router.location.pathname === '/search'
+    ) {
+      // wait after focus event on menu link
+      setTimeout(() => {
+        this.input.focus();
+        // put the cursor at the end of input
+        const { length } = this.state.searchString;
+        if (length) {
+          this.input.setSelectionRange(length, length);
+        }
+      }, 200);
+    }
+  }
 
   handleInputChange = evt => {
     this.setState({
@@ -57,7 +86,7 @@ export default class SearchInput extends PureComponent {
   };
 
   clearSearch = () => {
-    this.setState({ searchString: '' });
+    this.props.clearSearch();
     this.input.focus();
   };
 
