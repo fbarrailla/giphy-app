@@ -1,0 +1,126 @@
+/**
+ * Common
+ */
+@import url('https://fonts.googleapis.com/css?family=Merriweather');
+@import url('https://fonts.googleapis.com/css?family=Marck+Script');
+
+@import url('/icons.css');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Merriweather, Georgia, serif;
+}
+
+input,
+textarea,
+button {
+  font-family: inherit;
+}
+
+/**
+ * App layout
+ */
+
+.app {
+  padding-top: 88px;
+  margin-bottom: 20px;
+}
+
+.screen {
+  width: 80%;
+  margin: 0 auto;
+}
+
+/**
+ * Header
+ */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: white;
+  z-index: 10;
+  height: 74px;
+}
+
+.header__homelink {
+  position: absolute;
+  left: 10%;
+  top: 12px;
+  text-decoration: none;
+  background-color: #444c59;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+  color: white;
+}
+
+.header__homelink__logo {
+  font-family: 'Marck Script';
+  font-size: 25px;
+  display: block;
+}
+
+.menu {
+  position: absolute;
+  right: 10%;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.menu__item {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+  padding-bottom: 5px;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 12px;
+  list-style-type: none;
+}
+.menu__item.active {
+  border-color: #444c59;
+}
+.menu__item + .menu__item {
+  margin-left: 20px;
+}
+
+/**
+ * Search zone
+ */
+
+.search {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.search__icon {
+  font-size: 25px;
+  color: #444c59;
+}
+
+.search__input {
+  width: 198px;
+  font-size: 25px;
+  color: rgba(0, 0, 0, 0.8);
+  outline: 0;
+  margin-left: 10px;
+  border: 0;
+  background-color: transparent;
+}
