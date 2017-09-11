@@ -1,4 +1,4 @@
-# Giphy app – Vanilla
+# [←](https://github.com/fbarrailla/giphy-app) Giphy app – Vanilla
 
 ## Technical stack
 

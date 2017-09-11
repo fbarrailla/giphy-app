@@ -1,4 +1,4 @@
-# Giphy app – React/Redux
+# [←](https://github.com/fbarrailla/giphy-app) Giphy app – React/Redux
 
 ## Technical stack
 
