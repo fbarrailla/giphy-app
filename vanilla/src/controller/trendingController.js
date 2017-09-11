@@ -12,6 +12,8 @@ const fetchAndRenderTrendingGifs = () => {
     );
 };
 
-export const init = () => {
+export const renderScreen = () => {
   fetchAndRenderTrendingGifs();
 };
+
+export const init = () => {};

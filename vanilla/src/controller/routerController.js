@@ -16,13 +16,13 @@ export const init = () => {
   history.listen(({ pathname }) => {
     if (pathname !== oldPathname) {
       if (controllersByPath[pathname]) {
-        controllersByPath[pathname].init();
+        controllersByPath[pathname].renderScreen();
       }
       oldPathname = pathname;
     }
   });
 
   if (controllersByPath[location.pathname]) {
-    controllersByPath[location.pathname].init();
+    controllersByPath[location.pathname].renderScreen();
   }
 };

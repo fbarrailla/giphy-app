@@ -13,7 +13,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: Merriweather, Georgia, serif;
+  font-family: 'Merriweather', Georgia, serif;
 }
 
 input,
@@ -34,6 +34,17 @@ button {
 .screen {
   width: 80%;
   margin: 0 auto;
+}
+
+/**
+ * UI
+ */
+.big-message {
+  padding: 50px;
+  background-color: #e5e5e5;
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.8);
+  text-align: center;
 }
 
 /**
@@ -112,10 +123,26 @@ button {
   flex-direction: row;
   align-items: center;
 }
+.search--clearable .search__clear {
+  opacity: 1;
+  cursor: pointer;
+}
 
 .search__icon {
   font-size: 25px;
   color: #444c59;
+}
+
+.search__clear {
+  font-size: 30px;
+  color: rgba(0, 0, 0, 0.4);
+  cursor: default;
+  transition: color 0.2s, opacity 0.2s ease-in;
+  opacity: 0;
+  height: 30px;
+}
+.search__clear:hover {
+  color: rgba(0, 0, 0, 0.8);
 }
 
 .search__input {
@@ -162,8 +189,64 @@ button {
   position: relative;
   transition: background-color 2s ease-in-out;
 }
+.gif:hover .gif__actions-layer {
+  opacity: 1;
+}
 
 .gif__image {
   visibility: hidden;
   width: 100%;
+}
+
+.gif__actions-layer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+}
+
+.gif__actions {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.gif__action {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+}
+
+.gif__action__copy {
+  font-size: 20px;
+  position: relative;
+}
+
+.gif__action__copy__success {
+  font-family: 'Merriweather', Georgia, serif;
+  line-height: 1.3;
+  color: white;
+  font-size: 14px;
+  position: absolute;
+  top: -20px;
+  width: 100px;
+  left: -25px;
+  top: -40px;
+}
+
+.gif__action__favorite {
+  font-size: 22px;
 }
