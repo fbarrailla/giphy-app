@@ -86,18 +86,21 @@ button {
 }
 
 .menu__item {
+  list-style-type: none;
+}
+.menu__item + .menu__item {
+  margin-left: 20px;
+}
+
+.menu__item > a {
   border-bottom: 2px solid rgba(0, 0, 0, 0.3);
   padding-bottom: 5px;
   text-decoration: none;
   color: rgba(0, 0, 0, 0.8);
   font-size: 12px;
-  list-style-type: none;
 }
-.menu__item.active {
+.menu__item > a.active {
   border-color: #444c59;
-}
-.menu__item + .menu__item {
-  margin-left: 20px;
 }
 
 /**
@@ -123,4 +126,44 @@ button {
   margin-left: 10px;
   border: 0;
   background-color: transparent;
+}
+
+/**
+ * Gifs Grid
+ */
+
+.gifs {
+  background-color: #e5e5e5;
+  padding: 10px;
+}
+.gifs::before {
+  content: '';
+  display: none;
+  position: fixed;
+  top: 74px;
+  left: 10%;
+  right: 10%;
+  height: 10px;
+  background: #e5e5e5;
+  z-index: 10;
+}
+.gifs.sticked::before {
+  display: block;
+}
+
+.gifs__grid {
+  column-count: 4;
+  column-gap: 10px;
+}
+
+.gif {
+  break-inside: avoid-column;
+  margin-bottom: 10px;
+  position: relative;
+  transition: background-color 2s ease-in-out;
+}
+
+.gif__image {
+  visibility: hidden;
+  width: 100%;
 }
