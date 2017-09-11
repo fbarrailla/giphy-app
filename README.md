@@ -15,4 +15,4 @@ The goal of this project will be to test several libraries, frameworks and langu
 + Add a gif to favorites
 + Remove a gif from favorites
 + Display favorites
-+ Save favorite locally
++ Save favorites locally
