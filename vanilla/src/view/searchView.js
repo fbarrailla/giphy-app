@@ -1,5 +1,6 @@
 import { renderGifs } from '../view/common';
 import * as controller from '../controller/searchController';
+import history from '../history';
 
 const $screen = document.querySelector('.screen');
 const $searchInput = document.querySelector('.search__input');
@@ -8,6 +9,7 @@ const $clearInput = document.querySelector('.search__clear');
 const handleSearchInputKeyDown = evt => {
   if (evt.key === 'Enter') {
     controller.doSearch($searchInput.value);
+    history.push(`/search?q=${$searchInput.value}`);
   }
 };
 
@@ -28,6 +30,14 @@ const handleClearInputClick = evt => {
 export const render = () => {
   $screen.innerHTML = '';
   $searchInput.focus();
+  if (history.location.search) {
+    const params = new URLSearchParams(history.location.search);
+    const query = params.get('q');
+    if (query) {
+      $searchInput.value = query;
+      controller.doSearch(query);
+    }
+  }
 };
 
 export const init = () => {
