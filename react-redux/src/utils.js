@@ -1,13 +1,13 @@
 /**
  * Get random element from array
- * @param {Array} array 
+ * @param {Array} array
  */
 export const randomElement = array =>
   array[Math.floor(Math.random() * (array.length - 1))];
 
 /**
  * Local storage read/store
- * @param {string} key 
+ * @param {string} key
  */
 export const storage = key => ({
   save(data) {
@@ -28,11 +28,11 @@ export const storage = key => ({
 
 /**
  * Flatten array from [{ id: 1, data }] to { 1: { id: 1, data } }
- * @param {string} key 
+ * @param {string} key
  */
 export const normalize = key => array =>
   array.reduce((acc, el) => {
-    acc[el.id] = el;
+    acc[el[key]] = el;
     return acc;
   }, {});
 
