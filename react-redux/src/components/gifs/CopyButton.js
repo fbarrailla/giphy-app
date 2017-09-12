@@ -30,7 +30,7 @@ export default class CopyButton extends PureComponent {
     showSuccessMessage: false,
   };
 
-  componentWillUnmout() {
+  componentWillUnmount() {
     clearTimeout(this.timeout);
   }
 
